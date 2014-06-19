@@ -2,5 +2,4 @@ name = Tasty Backend Base
 description = Base install module for the Tasty Backend installation profile.
 version = VERSION
 core = 7.x
-dependencies[] = tasty_backend
 package = Tasty Backend
