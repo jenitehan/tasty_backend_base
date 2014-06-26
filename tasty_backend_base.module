@@ -1,6 +1,18 @@
 <?php
 
 /**
+ * Implements hook_permission().
+ */
+function tasty_backend_base_permission() {
+  return array(
+    'access tasty backend admin' => array(
+      'title' => t('Access Tasty Backend administration pages'),
+      'description' => t('Access administration pages provided by the Tasty Backend.'),
+    ),
+  );
+}
+
+/**
  * Implements hook_field_group_info().
  */
 function tasty_backend_base_field_group_info() {

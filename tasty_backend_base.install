@@ -21,6 +21,7 @@ function tasty_backend_base_install() {
     'delete any page content',
     'override page published option',
     'create url aliases',
+    'access tasty backend admin',
     'view the administration theme',
     'view any unpublished page content',
     )
@@ -40,6 +41,7 @@ function tasty_backend_base_install() {
     'view the administration theme',
     'assign content admin role',
     'assign user admin role',
+    'access tasty backend admin',
     )
   );
   
