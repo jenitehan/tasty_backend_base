@@ -5,9 +5,9 @@
  */
 function tasty_backend_base_permission() {
   return array(
-    'access tasty backend admin' => array(
-      'title' => t('Access Tasty Backend administration pages'),
-      'description' => t('Access administration pages provided by the Tasty Backend.'),
+    'access tasty backend content admin' => array(
+      'title' => t('Access Tasty Backend content administration pages'),
+      'description' => t('Access content administration pages provided by the Tasty Backend.'),
     ),
   );
 }
