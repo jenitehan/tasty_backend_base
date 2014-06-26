@@ -64,7 +64,7 @@ function tasty_backend_base_default_page_manager_pages() {
   $page->default_handlers[$handler->name] = $handler;
   $pages['manage_content'] = $page;
   
-  // Manage categories context admin page.
+  // Manage taxonomy context admin page.
   $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
@@ -76,12 +76,9 @@ function tasty_backend_base_default_page_manager_pages() {
   $page->access = array(
     'plugins' => array(
       0 => array(
-        'name' => 'role',
+        'name' => 'perm',
         'settings' => array(
-          'rids' => array(
-            0 => 3,
-            1 => 4,
-          ),
+          'perm' => 'access tasty backend content admin',
         ),
         'context' => 'logged-in-user',
         'not' => FALSE,
