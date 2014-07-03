@@ -214,3 +214,31 @@ function tasty_backend_base_check_menu_item_exists($menu) {
   }
   return $link_exists;
 }
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ *
+ * Add custom action links per VBO view.
+ */
+function tasty_backend_base_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+  $views_page = views_get_page_view();
+  if ($views_page) {
+    $types = node_type_get_names();
+    foreach ($types as $type => $name) {
+      if ($views_page->name == $type . '_bulk_operations') {
+        $data['actions']['output'][] = array(
+          '#theme' => 'menu_local_task',
+          '#link' => array(
+            'title' => t('Add new ' . $name),
+            'href' => 'node/add/' . $type,
+            'localized_options' => array(
+              'attributes' => array(
+                'title' => t('Add new ' . $name),
+              ),
+            ),
+          ),
+        );
+      }
+    } 
+  }
+}
