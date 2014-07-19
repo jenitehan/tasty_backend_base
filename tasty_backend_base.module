@@ -230,7 +230,7 @@ function tasty_backend_base_menu_local_tasks_alter(&$data, $router_item, $root_p
           '#theme' => 'menu_local_task',
           '#link' => array(
             'title' => t('Add new ' . $name),
-            'href' => 'node/add/' . $type,
+            'href' => 'node/add/' . str_replace('_', '-', $type),
             'localized_options' => array(
               'attributes' => array(
                 'title' => t('Add new ' . $name),
