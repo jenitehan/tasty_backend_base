@@ -672,9 +672,9 @@ function tasty_backend_base_default_vbo_view(&$views, $type, $name) {
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
-  $handler->display->display_options['path'] = 'admin/manage/content/' . $type . 's';
+  $handler->display->display_options['path'] = 'admin/manage/content/' . str_replace('_', '-', $type);
   $handler->display->display_options['menu']['type'] = 'normal';
-  $handler->display->display_options['menu']['title'] = $name . 's';
+  $handler->display->display_options['menu']['title'] = $name;
   $handler->display->display_options['menu']['description'] = 'Manage all content of the "' . $name . '" content type.';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['context'] = 0;
