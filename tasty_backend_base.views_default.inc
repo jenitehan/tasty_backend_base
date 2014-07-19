@@ -380,7 +380,7 @@ function tasty_backend_base_default_vbo_view(&$views, $type, $name) {
   
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Manage ' . $name . 's';
+  $handler->display->display_options['title'] = 'Manage ' . $name . ' content';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
