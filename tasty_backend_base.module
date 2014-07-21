@@ -188,6 +188,15 @@ function tasty_backend_base_menu_local_tasks_alter(&$data, $router_item, $root_p
 }
 
 /**
+ * Implements hook_node_type_insert().
+ *
+ * Add the Main Content vertical tab to new content types.
+ */
+function tasty_backend_base_node_type_insert($info) {
+  tasty_backend_base_main_content_field_group($info->type);
+}
+
+/**
  * Create a default "Main Content" field group.
  */
 function tasty_backend_base_main_content_field_group($type) {
