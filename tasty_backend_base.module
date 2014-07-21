@@ -211,7 +211,7 @@ function tasty_backend_base_main_content_field_group($type) {
   $group->table = 'field_group';
   $group->type = 'Normal';
   $group->label = 'Main Content';
-  $group->weight = '1';
+  $group->weight = '0';
   $group->children = array(
     0 => 'title',
     1 => 'body',
