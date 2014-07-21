@@ -73,6 +73,9 @@ function tasty_backend_base_install() {
   $content_admin_menu_source_settings[$user_role->rid] = array('source' => 'navigation');
   variable_set('admin_menu_source_settings', $content_admin_menu_source_settings);
   
+  // Add the main content vertical tabs to the Basic page content type.
+  tasty_backend_base_main_content_field_group('page');
+  
   // Create a demo user.
   $email = 'content_admin@tastybackend.com';
  

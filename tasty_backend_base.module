@@ -13,65 +13,9 @@ function tasty_backend_base_permission() {
 }
 
 /**
- * Implements hook_field_group_info().
- */
-function tasty_backend_base_field_group_info() {
-  $export = array();
-  
-  // Create a "Main Content" field group for all content types except article.
-  $types = node_type_get_names();
-  foreach ($types as $type => $name) {
-    if ($type != 'article') {
-      tasty_backend_base_main_content_field_group($export, $type);
-    }
-  }
-  
-  return $export;
-}
-
-/**
- * Create a "Main Content" field group that can be reused.
- */
-function tasty_backend_base_main_content_field_group(&$export, $type) {
-  
-  $field_group = new stdClass();
-  $field_group->disabled = FALSE;
-  $field_group->api_version = 1;
-  $field_group->identifier = 'group_main_content|node|' . $type . '|form';
-  $field_group->group_name = 'group_main_content';
-  $field_group->entity_type = 'node';
-  $field_group->bundle = $type;
-  $field_group->mode = 'form';
-  $field_group->parent_name = '';
-  $field_group->data = array(
-    'label' => 'Main Content',
-    'weight' => '0',
-    'children' => array(
-      0 => 'title',
-      1 => 'body',
-    ),
-    'format_type' => 'tab',
-    'format_settings' => array(
-      'formatter' => 'closed',
-      'instance_settings' => array(
-        'description' => '',
-        'classes' => 'group-main-content field-group-tab',
-        'required_fields' => 1,
-      ),
-    ),
-  );
-  $export['group_main_content|node|' . $type . '|form'] = $field_group;
-  
-  return $export;
-}
-
-/**
 * Implements hook_ctools_plugin_api().
 */
 function tasty_backend_base_ctools_plugin_api($owner, $api) {
-  if ($owner == 'field_group' && $api == 'field_group') {
-    return array('version' => 1);
-  }
   if ($owner == "page_manager" && $api == "pages_default") {
     return array("version" => "1");
   }
@@ -241,4 +185,38 @@ function tasty_backend_base_menu_local_tasks_alter(&$data, $router_item, $root_p
       }
     } 
   }
+}
+
+/**
+ * Create a default "Main Content" field group.
+ */
+function tasty_backend_base_main_content_field_group($type) {
+  $group = new stdClass();
+  $group->id = NULL;
+  $group->identifier = 'group_main_content|node|' . $type . '|form';
+  $group->group_name = 'group_main_content';
+  $group->entity_type = 'node';
+  $group->bundle = $type;
+  $group->mode = 'form';
+  $group->parent_name = '';
+  $group->table = 'field_group';
+  $group->type = 'Normal';
+  $group->label = 'Main Content';
+  $group->weight = '1';
+  $group->children = array(
+    0 => 'title',
+    1 => 'body',
+  );
+  $group->format_type = 'tab';
+  $group->format_settings = array(
+    'formatter' => 'closed',
+    'instance_settings' => array(
+      'description' => '',
+      'classes' => 'group-main-content field-group-tab',
+      'required_fields' => 1,
+    ),
+  );
+  ctools_include('export');
+  ctools_export_crud_save('field_group', $group);
+  ctools_export_crud_enable('field_group', $group->identifier);
 }
