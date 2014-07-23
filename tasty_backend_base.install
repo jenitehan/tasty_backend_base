@@ -75,25 +75,4 @@ function tasty_backend_base_install() {
   
   // Add the main content vertical tabs to the Basic page content type.
   tasty_backend_base_main_content_field_group('page');
-  
-  // Create a demo user.
-  $email = 'content_admin@tastybackend.com';
- 
-  //set up the user fields
-  $fields = array(
-  // @todo change username and password back. Using demo:demo since it's short.
-    //'name' => 'Content Admin',
-    'name' => 'demo',
-    'mail' => $email,
-    //'pass' => 'password',
-    'pass' => 'demo',
-    'status' => 1,
-    'init' => $email,
-    'roles' => array(
-      DRUPAL_AUTHENTICATED_RID => 'authenticated user',
-      $content_role->rid => $content_role->name,
-      $user_role->rid => $user_role->name,
-    ),
-  );
-  user_save('', $fields);
 }
