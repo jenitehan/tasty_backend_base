@@ -193,7 +193,10 @@ function tasty_backend_base_menu_local_tasks_alter(&$data, $router_item, $root_p
  * Add the Main Content vertical tab to new content types.
  */
 function tasty_backend_base_node_type_insert($info) {
-  tasty_backend_base_main_content_field_group($info->type);
+  // Only alter custom content types.  Those added from other modules shouldn't have this added.
+  if ($info->custom) {
+    tasty_backend_base_main_content_field_group($info->type);
+  }
 }
 
 /**
