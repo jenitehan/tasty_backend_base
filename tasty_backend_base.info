@@ -5,7 +5,6 @@ core = 7.x
 package = Tasty Backend
 dependencies[] = block
 dependencies[] = color
-dependencies[] = contextual
 dependencies[] = help
 dependencies[] = image
 dependencies[] = list
@@ -16,9 +15,7 @@ dependencies[] = path
 dependencies[] = taxonomy
 dependencies[] = dblog
 dependencies[] = search
-dependencies[] = field_ui
 dependencies[] = file
-dependencies[] = rdf
 
 ; Contrib dependancies.
 dependencies[] = admin_menu
