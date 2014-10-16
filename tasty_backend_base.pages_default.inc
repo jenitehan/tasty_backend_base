@@ -194,18 +194,15 @@ function tasty_backend_base_default_page_manager_pages() {
   $page->access = array(
     'plugins' => array(
       0 => array(
-        'name' => 'role',
+        'name' => 'perm',
         'settings' => array(
-          'rids' => array(
-            0 => 3,
-            1 => 5,
-          ),
+          'perm' => 'administer users',
         ),
         'context' => 'logged-in-user',
         'not' => FALSE,
       ),
     ),
-    'logic' => 'or',
+    'logic' => 'and',
   );
   $page->menu = array(
     'type' => 'action',
