@@ -67,6 +67,25 @@ function tasty_backend_base_form_taxonomy_overview_terms_alter(&$form, &$form_st
 }
 
 /**
+ * Implements hook_form_form_ID_alter().
+ * Change redirects when deleting taxonomy terms.
+ */
+function tasty_backend_base_form_taxonomy_form_term_alter(&$form, &$form_state, $form_id) {
+  $form['#submit'][] = 'tasty_backend_base_term_delete_redirect';
+}
+
+/**
+ * Submit handler to redirect to tasty backend manage categories page instead
+ * of core admin/structure/taxonomy page.
+ */
+function tasty_backend_base_term_delete_redirect($form, &$form_state) {
+  // Check we're deleting the term. @see taxonomy_form_term_submit().
+  if ($form_state['values']['delete'] === TRUE && !user_access('administer taxonomy')) {
+    $form_state['redirect'] = 'admin/manage/categories';
+  }
+}
+
+/**
  * Implements hook_menu_link_alter().
  */
 function tasty_backend_base_menu_link_alter(&$item) {
