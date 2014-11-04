@@ -3,6 +3,8 @@ description = Base install module for the Tasty Backend installation profile.
 version = VERSION
 core = 7.x
 package = Tasty Backend
+
+; Core dependencies
 dependencies[] = block
 dependencies[] = image
 dependencies[] = list
@@ -30,5 +32,4 @@ dependencies[] = role_delegation
 dependencies[] = user_settings_access
 dependencies[] = view_unpublished
 dependencies[] = views
-dependencies[] = views_ui
 dependencies[] = views_bulk_operations
