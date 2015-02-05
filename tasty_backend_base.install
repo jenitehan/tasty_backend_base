@@ -68,6 +68,18 @@ function tasty_backend_base_install() {
   $content_admin_menu_source_settings[$user_role->rid] = array('source' => 'navigation');
   variable_set('admin_menu_source_settings', $content_admin_menu_source_settings);
   
-  // Add the main content vertical tabs to the Basic page content type.
-  //tasty_backend_base_main_content_field_group('page');
+  // Add the main content vertical tabs to existing content types.
+  $types = node_type_get_types();
+  if ($types) {
+    foreach ($types as $type) {
+      // Exclude certain content types that are handled by other tasty backend modules.
+      $exclude = array(
+        'article',
+        'webform',
+      );
+      if (!in_array($type->type, $exclude)) {
+        tasty_backend_base_main_content_field_group($type->type);
+      }
+    }
+  }
 }
