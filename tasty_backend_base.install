@@ -16,14 +16,9 @@ function tasty_backend_base_install() {
     'access administration menu',
     'access contextual links',
     'administer main-menu menu items',
-    'create page content',
-    'edit any page content',
-    'delete any page content',
-    'override page published option',
     'create url aliases',
     'access tasty backend content admin',
     'view the administration theme',
-    'view any unpublished page content',
     )
   );
   
@@ -74,5 +69,5 @@ function tasty_backend_base_install() {
   variable_set('admin_menu_source_settings', $content_admin_menu_source_settings);
   
   // Add the main content vertical tabs to the Basic page content type.
-  tasty_backend_base_main_content_field_group('page');
+  //tasty_backend_base_main_content_field_group('page');
 }
