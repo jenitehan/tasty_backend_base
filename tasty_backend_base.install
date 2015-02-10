@@ -76,6 +76,7 @@ function tasty_backend_base_install() {
       $exclude = array(
         'article',
         'webform',
+        'page',
       );
       if (!in_array($type->type, $exclude)) {
         tasty_backend_base_main_content_field_group($type->type);
