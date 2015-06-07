@@ -368,7 +368,7 @@ function tasty_backend_base_views_default_views() {
 function tasty_backend_base_default_vbo_view(&$views, $type, $name) {
   $view = new view();
   $view->name = $type . '_bulk_operations';
-  $view->description = '';
+  $view->description = 'A bulk operations view to manage "' . $name . '" content.';
   $view->tag = 'default, content, admin, tasty backend';
   $view->base_table = 'node';
   $view->human_name = $name . ' Bulk Operations';
