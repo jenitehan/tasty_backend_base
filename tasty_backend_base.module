@@ -251,3 +251,13 @@ function tasty_backend_base_main_content_field_group($type) {
   ctools_export_crud_save('field_group', $group);
   ctools_export_crud_enable('field_group', $group->identifier);
 }
+
+/**
+ * Implements template_preprocess_page().
+ */
+function tasty_backend_page_preprocess_page(&$variables) {
+  $path = current_path();
+  if ($path == 'admin/manage/people/people/add') {
+    drupal_set_title(t('Add user'));
+  }
+}
