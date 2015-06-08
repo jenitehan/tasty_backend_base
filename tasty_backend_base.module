@@ -219,6 +219,13 @@ function tasty_backend_base_node_type_insert($info) {
 }
 
 /**
+ * Implements hook_node_type_delete().
+ */
+function tasty_backend_base_node_type_delete($info) {
+  variable_del('tasty_backend_default_permissions_' . $info->type);
+}
+
+/**
  * Create a default "Main Content" field group.
  */
 function tasty_backend_base_main_content_field_group($type) {
@@ -260,4 +267,49 @@ function tasty_backend_page_preprocess_page(&$variables) {
   if ($path == 'admin/manage/people/people/add') {
     drupal_set_title(t('Add user'));
   }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ * Add option to set Tasty Backend default permissions for content type.
+ */
+function tasty_backend_base_form_node_type_form_alter(&$form, $form_state) {
+  if (isset($form['type'])) {
+    $form['tasty_backend_defaults'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('Tasty Backend'),
+      '#collapsible' => TRUE,
+      '#collapsed' => TRUE,
+      '#group' => 'additional_settings',
+      '#attributes' => array(
+        'class' => array('tasty-backend-node-type-settings-form'),
+      ),
+      //'#attached' => array(
+        //'js' => array(drupal_get_path('module', 'comment') . '/comment-node-form.js'),
+      //),
+    );
+    $form['tasty_backend_defaults']['tasty_backend_default_permissions'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Add default Tasty Backend permissions for this content type.'),
+      '#default_value' => variable_get('tasty_backend_default_permissions_' . $form['#node_type']->type, 1),
+    );
+    $form['#submit'][] = 'tasty_backend_base_default_permissions';
+  }
+}
+
+/**
+ * Custom submit handler to apply or remove default permissions on content types.
+ */
+function tasty_backend_base_default_permissions($form, &$form_state) {
+  $add_perms = $form_state['values']['tasty_backend_default_permissions'];
+  $role = user_role_load_by_name('content admin');
+  $type = $form_state['values']['type'];
+  user_role_change_permissions($role->rid, array(
+    'create ' . $type . ' content' => $add_perms,
+    'edit any ' . $type . ' content' => $add_perms,
+    'delete any ' . $type . ' content' => $add_perms,
+    'override ' . $type . ' published option' => $add_perms,
+    'view any unpublished ' . $type . ' content' => $add_perms,
+    )
+  );
 }
