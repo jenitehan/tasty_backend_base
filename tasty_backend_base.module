@@ -312,4 +312,6 @@ function tasty_backend_base_default_permissions($form, &$form_state) {
     'view any unpublished ' . $type . ' content' => $add_perms,
     )
   );
+  // Clear menu cache otherwise the manage content link for the content type won't work.
+  menu_cache_clear();
 }
