@@ -293,18 +293,34 @@ function tasty_backend_base_form_node_type_form_alter(&$form, $form_state) {
       '#title' => t('Add default Tasty Backend permissions for this content type.'),
       '#default_value' => variable_get('tasty_backend_default_permissions_' . $form['#node_type']->type, 1),
     );
-    $form['#submit'][] = 'tasty_backend_base_default_permissions';
+    $form['#submit'][] = 'tasty_backend_base_set_perms';
   }
 }
 
 /**
  * Custom submit handler to apply or remove default permissions on content types.
  */
-function tasty_backend_base_default_permissions($form, &$form_state) {
+function tasty_backend_base_set_perms($form, &$form_state) {
   $add_perms = $form_state['values']['tasty_backend_default_permissions'];
   $role = user_role_load_by_name('content admin');
   $type = $form_state['values']['type'];
-  user_role_change_permissions($role->rid, array(
+  tasty_backend_base_default_permissions($role->rid, $type, $add_perms);
+  
+  // Clear menu cache otherwise the manage content link for the content type won't work.
+  menu_cache_clear();
+}
+
+/**
+ * Set default permissions for content types.
+ * @param $rid
+ *    Role ID of role to receive permissions.
+ * @param $type
+ *    Machine name of content type.
+ * @param $add_perms
+ *    Boolean. Whether to add or remove permissions.
+ */
+function tasty_backend_base_default_permissions($rid, $type, $add_perms) {
+  user_role_change_permissions($rid, array(
     'create ' . $type . ' content' => $add_perms,
     'edit any ' . $type . ' content' => $add_perms,
     'delete any ' . $type . ' content' => $add_perms,
@@ -312,6 +328,4 @@ function tasty_backend_base_default_permissions($form, &$form_state) {
     'view any unpublished ' . $type . ' content' => $add_perms,
     )
   );
-  // Clear menu cache otherwise the manage content link for the content type won't work.
-  menu_cache_clear();
 }
