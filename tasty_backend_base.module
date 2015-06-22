@@ -307,7 +307,7 @@ function tasty_backend_base_set_perms($form, &$form_state) {
   tasty_backend_base_default_permissions($role->rid, $type, $add_perms);
   
   // Clear menu cache otherwise the manage content link for the content type won't work.
-  menu_cache_clear();
+  drupal_flush_all_caches();
 }
 
 /**
