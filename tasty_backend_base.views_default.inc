@@ -381,8 +381,11 @@ function tasty_backend_base_default_vbo_view(&$views, $type, $name) {
   $handler->display->display_options['title'] = 'Manage ' . $name . ' content';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['access']['perm'] = 'edit any ' . $type . ' content';
+  $content_admin_role = user_role_load_by_name('content admin');
+  $handler->display->display_options['access']['type'] = 'role';
+  $handler->display->display_options['access']['role'] = array(
+    4 => $content_admin_role->rid,
+  );
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
