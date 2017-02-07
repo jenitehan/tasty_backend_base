@@ -1,0 +1,13 @@
+langcode: en
+status: true
+dependencies: {  }
+id: user_admin
+label: 'User admin'
+weight: 4
+is_admin: null
+permissions:
+  - 'access contextual links'
+  - 'view the administration theme'
+  - 'access toolbar'
+  - 'administer users'
+  - 'access user profiles'

@@ -1,0 +1,14 @@
+name: Tasty Backend Base
+type: module
+description: Base module for a Tasty Backend.
+core: 8.x
+package: Tasty Backend
+dependencies:
+  - admin_toolbar
+  - admin_toolbar_tools
+  - contextual
+  - path
+
+config_devel:
+  - user.role.content_admin
+  - user.role.user_admin

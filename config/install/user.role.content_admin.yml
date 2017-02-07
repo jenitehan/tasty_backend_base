@@ -1,0 +1,12 @@
+langcode: en
+status: true
+dependencies: {  }
+id: content_admin
+label: 'Content admin'
+weight: 3
+is_admin: null
+permissions:
+  - 'access contextual links'
+  - 'create url aliases'
+  - 'view the administration theme'
+  - 'access toolbar'
