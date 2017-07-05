@@ -8,11 +8,14 @@ dependencies:
   - admin_toolbar_tools
   - contextual
   - node
+  - override_node_options
   - path
   - toolbar_menu
+  - view_unpublished
 
 config_devel:
   - user.role.content_admin
   - user.role.user_admin
   - system.menu.tb-manage
   - toolbar_menu.toolbar_menu_element.tb_manage
+  - views.view.tb_manage_content
