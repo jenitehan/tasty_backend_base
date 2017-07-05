@@ -7,6 +7,7 @@ weight: 3
 is_admin: null
 permissions:
   - 'access contextual links'
-  - 'create url aliases'
-  - 'view the administration theme'
   - 'access toolbar'
+  - 'create url aliases'
+  - 'view tb_manage in toolbar'
+  - 'view the administration theme'

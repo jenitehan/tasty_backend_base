@@ -1,0 +1,45 @@
+tasty_backend_base.add_content:
+  title: 'Add content'
+  description: 'Add content.'
+  parent: tb-manage
+  menu_name: tb-manage
+  route_name: node.add_page
+  weight: 0
+  options:
+    attributes:
+      class:
+          - toolbar-icon
+          - toolbar-icon-system-admin-content
+
+tasty_backend_base.manage_content:
+  title: 'Manage content'
+  description: 'Manage content.'
+  parent: tb-manage
+  menu_name: tb-manage
+  route_name: view.content.page_1
+  weight: 1
+  options:
+    attributes:
+      class:
+          - toolbar-icon
+          - toolbar-icon-system-admin-content
+
+tasty_backend_base.entity_user_collection:
+  title: 'Users'
+  description: 'Configure user accounts.'
+  parent: tb-manage
+  menu_name: tb-manage
+  route_name: entity.user.collection
+  weight: 2
+  options:
+    attributes:
+      class:
+          - toolbar-icon
+          - toolbar-icon-entity-user-collection
+
+tasty_backend_base.user_add:
+  title: 'Add user'
+  description: 'Add a new user account.'
+  parent: tasty_backend_base.entity_user_collection
+  menu_name: tb-manage
+  route_name: user.admin_create

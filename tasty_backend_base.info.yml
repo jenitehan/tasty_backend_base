@@ -8,7 +8,10 @@ dependencies:
   - admin_toolbar_tools
   - contextual
   - path
+  - toolbar_menu
 
 config_devel:
   - user.role.content_admin
   - user.role.user_admin
+  - system.menu.tb-manage
+  - toolbar_menu.toolbar_menu_element.tb_manage

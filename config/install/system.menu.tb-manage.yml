@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: tb-manage
+label: Manage
+description: 'Management menu for users who are not full administrators.'
+locked: false
