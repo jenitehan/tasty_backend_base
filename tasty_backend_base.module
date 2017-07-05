@@ -9,3 +9,19 @@ function tasty_backend_base_toolbar_alter(&$items) {
     $items['administration']['tab']['#access'] = FALSE;
   }
 }
+
+/**
+ * Implements hook_menu_links_discovered_alter().
+ */
+function tasty_backend_base_menu_links_discovered_alter(&$links) {
+  // Add node links for each content type.
+  foreach (\Drupal::entityTypeManager()->getStorage('node_type')->loadMultiple() as $type) {
+    $links['node.add.' . $type->id()] = array(
+      'title' => t($type->label()),
+      'route_name' => 'node.add',
+      'parent' => 'tasty_backend_base.add_content',
+      'menu_name' => 'tb-manage',
+      'route_parameters' => array('node_type' => $type->id()),
+    );
+  }
+}
