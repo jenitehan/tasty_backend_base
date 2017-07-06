@@ -25,3 +25,24 @@ function tasty_backend_base_menu_links_discovered_alter(&$links) {
     );
   }
 }
+
+/**
+ * Implements hook_entity_bundle_create().
+ */
+function tasty_backend_base_entity_bundle_create($entity_type_id, $bundle) {
+
+  if ($entity_type_id == 'node') {
+    $type = \Drupal::entityTypeManager()->getStorage('node_type')->load($bundle);
+    \Drupal\tasty_backend_base\TastyBackendManager::createAdminView($type);
+  }
+}
+
+/**
+ * Implements hook_entity_bundle_delete().
+ */
+//function tasty_backend_base_entity_bundle_delete($entity_type_id, $bundle) {
+//
+//  if ($entity_type_id == 'node') {
+//    \Drupal::configFactory()->getEditable('views.view.tb_manage_content_' . $bundle)->delete();
+//  }
+//}

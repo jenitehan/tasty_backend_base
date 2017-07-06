@@ -39,7 +39,7 @@ class TastyBackendManager extends SystemManager {
    * @param Drupal\node\Entity\NodeType $type
    *    Drupal NodeType object.
    */
-  public function createAdminView($type) {
+  public static function createAdminView($type) {
 
     // Default view doesn't have any type set.
     $type_filter = [
