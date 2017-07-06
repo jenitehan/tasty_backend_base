@@ -3,7 +3,7 @@
 namespace Drupal\tasty_backend_base\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use Drupal\system\SystemManager;
+use Drupal\tasty_backend_base\TastyBackendManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -12,20 +12,20 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class TastyBackendBaseController extends ControllerBase {
   
   /**
-   * System Manager Service.
+   * Tasty Backend Manager Service.
    *
-   * @var \Drupal\system\SystemManager
+   * @var \Drupal\tasty_backend_base\manager\TastyBackendManager
    */
-  protected $systemManager;
+  protected $tastyBackendManager;
   
   /**
    * Constructs a new TastyBackendBaseController.
    *
-   * @param \Drupal\system\SystemManager $systemManager
-   *   System manager service.
+   * @param \Drupal\tasty_backend_base\manager\TastyBackendManager $tastyBackendManager
+   *   Tasty Backend Manager service.
    */
-  public function __construct(SystemManager $systemManager) {
-    $this->systemManager = $systemManager;
+  public function __construct(TastyBackendManager $tastyBackendManager) {
+    $this->tastyBackendManager = $tastyBackendManager;
   }
   
   /**
@@ -33,7 +33,7 @@ class TastyBackendBaseController extends ControllerBase {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('system.manager')
+      $container->get('tasty_backend_base.manager')
     );
   }
 
@@ -44,22 +44,7 @@ class TastyBackendBaseController extends ControllerBase {
    *   A render array suitable for drupal_render.
    */
   public function manageContentPage() {
-    $this->menuLinkManager = \Drupal::service('plugin.manager.menu.link');
-    $menu_links = $this->menuLinkManager->loadLinksByRoute('tasty_backend_base.manage_content_page', [], 'tb-manage');
-    $menu_link = reset($menu_links);
-    if (!empty($menu_links) && $content = $this->systemManager->getAdminBlock($menu_link)) {
-      $output = [
-        '#theme' => 'admin_block_content',
-        '#content' => $content,
-      ];
-    }
-    else {
-      $output = [
-        '#markup' => t('You do not have any administrative items.'),
-      ];
-    }
-    
-    return $output;
+    return $this->tastyBackendManager->getBlockContents();
   }
 
 }

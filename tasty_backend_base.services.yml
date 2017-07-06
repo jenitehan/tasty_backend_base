@@ -1,0 +1,4 @@
+services:
+  tasty_backend_base.manager:
+    class: Drupal\tasty_backend_base\TastyBackendManager
+    arguments: ['@module_handler', '@entity.manager', '@request_stack', '@menu.link_tree', '@menu.active_trail']
