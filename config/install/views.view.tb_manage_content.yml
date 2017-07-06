@@ -1,5 +1,5 @@
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - node.type.article
@@ -775,13 +775,13 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: admin/manage/content
+      path: admin/manage/content/all
       menu:
         type: normal
-        title: 'Manage content'
+        title: All
         description: 'Manage all content.'
         expanded: false
-        parent: ''
+        parent: tasty_backend_base.manage_content_page
         weight: 1
         context: '0'
         menu_name: tb-manage

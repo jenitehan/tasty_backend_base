@@ -11,12 +11,12 @@ tasty_backend_base.add_content:
           - toolbar-icon
           - toolbar-icon-system-admin-content
 
-tasty_backend_base.manage_content:
+tasty_backend_base.manage_content_page:
   title: 'Manage content'
   description: 'Manage content.'
   parent: tb-manage
   menu_name: tb-manage
-  route_name: view.content.page_1
+  route_name: tasty_backend_base.manage_content_page
   weight: 1
   options:
     attributes:
