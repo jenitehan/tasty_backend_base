@@ -47,10 +47,10 @@ class TastyBackendBaseController extends ControllerBase {
     $this->menuLinkManager = \Drupal::service('plugin.manager.menu.link');
     $menu_links = $this->menuLinkManager->loadLinksByRoute('tasty_backend_base.manage_content_page', [], 'tb-manage');
     $menu_link = reset($menu_links);
-    if (!empty($menu_links)) {
+    if (!empty($menu_links) && $content = $this->systemManager->getAdminBlock($menu_link)) {
       $output = [
         '#theme' => 'admin_block_content',
-        '#content' => $this->systemManager->getAdminBlock($menu_link),
+        '#content' => $content,
       ];
     }
     else {
