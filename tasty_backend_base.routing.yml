@@ -4,4 +4,4 @@ tasty_backend_base.manage_content_page:
     _controller: '\Drupal\tasty_backend_base\Controller\TastyBackendBaseController::manageContentPage'
     _title: 'Manage content'
   requirements:
-    _permission: 'access content'
+    _permission: 'access tasty backend admin pages'
