@@ -32,8 +32,7 @@ function tasty_backend_base_menu_links_discovered_alter(&$links) {
   }
 
   // Links for taxonomy vocabularies.
-  $vocabularies = \Drupal\taxonomy\Entity\Vocabulary::loadMultiple();
-  foreach ($vocabularies as $vocab) {
+  foreach (\Drupal\taxonomy\Entity\Vocabulary::loadMultiple() as $vocab) {
     $links['tasty_backend_base.entity.taxonomy_vocabulary.overview_form.' . $vocab->id()] = array(
       'title' => t($vocab->label()),
       'route_name' => 'entity.taxonomy_vocabulary.overview_form',
