@@ -22,7 +22,7 @@ function tasty_backend_base_menu_links_discovered_alter(&$links) {
 
   // Add node links for each content type.
   foreach (\Drupal::entityTypeManager()->getStorage('node_type')->loadMultiple() as $type) {
-    $links['node.add.' . $type->id()] = array(
+    $links['tasty_backend_base.node.add.' . $type->id()] = array(
       'title' => t($type->label()),
       'route_name' => 'node.add',
       'parent' => 'tasty_backend_base.add_content',
@@ -34,19 +34,37 @@ function tasty_backend_base_menu_links_discovered_alter(&$links) {
   // Links for taxonomy vocabularies.
   $vocabularies = \Drupal\taxonomy\Entity\Vocabulary::loadMultiple();
   foreach ($vocabularies as $vocab) {
-    $links['entity.taxonomy_vocabulary.overview_form.' . $vocab->id()] = array(
+    $links['tasty_backend_base.entity.taxonomy_vocabulary.overview_form.' . $vocab->id()] = array(
       'title' => t($vocab->label()),
       'route_name' => 'entity.taxonomy_vocabulary.overview_form',
       'parent' => 'tasty_backend_base.taxonomy_vocabulary.collection',
       'menu_name' => 'tb-manage',
       'route_parameters' => array('taxonomy_vocabulary' => $vocab->id()),
     );
-    $links['entity.taxonomy_term.add_form.' . $vocab->id()] = array(
+    $links['tasty_backend_base.entity.taxonomy_term.add_form.' . $vocab->id()] = array(
       'title' => t('Add term'),
       'route_name' => 'entity.taxonomy_term.add_form',
-      'parent' => 'entity.taxonomy_vocabulary.overview_form.' . $vocab->id(),
+      'parent' => 'tasty_backend_base.entity.taxonomy_vocabulary.overview_form.' . $vocab->id(),
       'menu_name' => 'tb-manage',
       'route_parameters' => array('taxonomy_vocabulary' => $vocab->id()),
+    );
+  }
+
+  // Links for menus.
+  foreach (menu_ui_get_menus() as $machine_name => $label) {
+    $links['tasty_backend_base.entity.menu.edit_form.' . $machine_name] = array(
+      'title' => $label,
+      'route_name' => 'entity.menu.edit_form',
+      'menu_name' => 'tb-manage',
+      'parent' => 'tasty_backend_base.menu.collection',
+      'route_parameters' => array('menu' => $machine_name),
+    );
+    $links['tasty_backend_base.entity.menu.add_link_form.' . $machine_name] = array(
+      'title' => t('Add link'),
+      'route_name' => 'entity.menu.add_link_form',
+      'menu_name' => 'tb-manage',
+      'parent' => 'tasty_backend_base.entity.menu.edit_form.' . $machine_name,
+      'route_parameters' => array('menu' => $machine_name),
     );
   }
 }
