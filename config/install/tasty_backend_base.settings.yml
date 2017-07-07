@@ -1,2 +1,1 @@
-tasty_backend_base:
-  apply_default_content_perms: 1
+apply_default_content_perms: 1
