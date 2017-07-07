@@ -10,6 +10,7 @@ dependencies:
   - node
   - override_node_options
   - path
+  - taxonomy_access_fix
   - toolbar_menu
   - view_unpublished
 
