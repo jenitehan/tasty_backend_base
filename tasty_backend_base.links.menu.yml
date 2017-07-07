@@ -24,13 +24,26 @@ tasty_backend_base.manage_content_page:
           - toolbar-icon
           - toolbar-icon-system-admin-content
 
+tasty_backend_base.taxonomy_vocabulary.collection:
+  title: 'Taxonomy'
+  description: 'Add categories to group content and other items.'
+  parent: tb-manage
+  menu_name: tb-manage
+  route_name: entity.taxonomy_vocabulary.collection
+  weight: 2
+  options:
+    attributes:
+      class:
+          - toolbar-icon
+          - toolbar-icon-system-admin-structure
+
 tasty_backend_base.entity_user_collection:
   title: 'Users'
   description: 'Configure user accounts.'
   parent: tb-manage
   menu_name: tb-manage
   route_name: entity.user.collection
-  weight: 2
+  weight: 3
   options:
     attributes:
       class:
