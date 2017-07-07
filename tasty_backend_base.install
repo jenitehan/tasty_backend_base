@@ -8,5 +8,6 @@ function tasty_backend_base_install() {
   // Add administration views for any enabled content types.
   foreach (\Drupal::entityTypeManager()->getStorage('node_type')->loadMultiple() as $type) {
     \Drupal\tasty_backend_base\TastyBackendManager::createAdminView($type);
+    \Drupal\tasty_backend_base\TastyBackendManager::addContentTypePermissions($type);
   }
 }
