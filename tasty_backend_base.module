@@ -12,7 +12,7 @@ function tasty_backend_base_toolbar_alter(&$items) {
   }
   
   // Add icons css.
-  $items['administration']['#attached']['library'][] = 'tasty_backend_base/tasty_backend_icons';
+  $items['toolbar_menu_tb_manage']['#attached']['library'][] = 'tasty_backend_base/tasty_backend_icons';
 }
 
 /**
