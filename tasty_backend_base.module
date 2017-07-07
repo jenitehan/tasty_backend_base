@@ -4,10 +4,15 @@
  * Implements hook_toolbar_alter().
  */
 function tasty_backend_base_toolbar_alter(&$items) {
+  
+  // Remove the administration menu.
   $roles = \Drupal::currentUser()->getRoles();
   if (!in_array('administrator', $roles)) {
     $items['administration']['tab']['#access'] = FALSE;
   }
+  
+  // Add icons css.
+  $items['administration']['#attached']['library'][] = 'tasty_backend_base/tasty_backend_icons';
 }
 
 /**

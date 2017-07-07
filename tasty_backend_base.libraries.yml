@@ -1,0 +1,5 @@
+tasty_backend_icons:
+  version: 1.x
+  css:
+    theme:
+      css/tasty_backend.icons.theme.css: {}

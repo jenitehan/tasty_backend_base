@@ -9,7 +9,7 @@ tasty_backend_base.add_content:
     attributes:
       class:
           - toolbar-icon
-          - toolbar-icon-system-admin-content
+          - tb-toolbar-icon-pencil
 
 tasty_backend_base.manage_content_page:
   title: 'Manage content'
@@ -37,13 +37,26 @@ tasty_backend_base.taxonomy_vocabulary.collection:
           - toolbar-icon
           - toolbar-icon-system-admin-structure
 
+tasty_backend_base.menu.collection:
+  title: 'Menus'
+  description: 'Manage menu items.'
+  parent: tb-manage
+  menu_name: tb-manage
+  route_name: entity.menu.collection
+  weight: 3
+  options:
+    attributes:
+      class:
+          - toolbar-icon
+          - tb-toolbar-icon-menu
+
 tasty_backend_base.entity_user_collection:
   title: 'Users'
   description: 'Configure user accounts.'
   parent: tb-manage
   menu_name: tb-manage
   route_name: entity.user.collection
-  weight: 3
+  weight: 4
   options:
     attributes:
       class:

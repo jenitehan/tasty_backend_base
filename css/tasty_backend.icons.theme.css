@@ -1,0 +1,23 @@
+/**
+ * @file
+ * Tasty Backend styling for toolbar module icons.
+ */
+
+/**
+ * Manage menu icons.
+ */
+.tb-toolbar-icon-pencil:before {
+  background-image: url(../images/icons/787878/pencil.svg);
+}
+.tb-toolbar-icon-pencil:active:before,
+.tb-toolbar-icon-pencil.is-active:before {
+  background-image: url(../images/icons/000000/pencil.svg);
+}
+
+.tb-toolbar-icon-menu:before {
+  background-image: url(../images/icons/787878/hamburger.svg);
+}
+.tb-toolbar-icon-menu:active:before,
+.tb-toolbar-icon-menu.is-active:before {
+  background-image: url(../images/icons/000000/hamburger.svg);
+}
