@@ -76,7 +76,7 @@ tasty_backend_base.system_page:
   parent: tb-manage
   menu_name: tb-manage
   route_name: tasty_backend_base.system_page
-  weight: 5
+  weight: 50
   options:
     attributes:
       class:
