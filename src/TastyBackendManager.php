@@ -71,4 +71,22 @@ class TastyBackendManager extends SystemManager {
     $config->save(TRUE);
   }
 
+  /**
+   * Add default permissions for a content type.
+   *
+   * @param Drupal\node\Entity\NodeType $type
+   *    Drupal NodeType object.
+   * @param $rid
+   *    The ID of a user role to alter.
+   */
+  public static function addContentTypePermissions($type, $rid = 'content_admin') {
+    user_role_grant_permissions($rid, [
+      'create ' . $type->id() . ' content',
+      'delete any ' . $type->id() .  ' content',
+      'edit any ' . $type->id() .  ' content',
+      'override ' . $type->id() . ' published option',
+      'view any unpublished ' . $type->id() . ' content',
+    ]);
+  }
+
 }

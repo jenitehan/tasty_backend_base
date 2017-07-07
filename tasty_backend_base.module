@@ -1,5 +1,7 @@
 <?php
 
+use Drupal\tasty_backend_base\TastyBackendManager;
+
 /**
  * Implements hook_toolbar_alter().
  */
@@ -75,7 +77,12 @@ function tasty_backend_base_entity_bundle_create($entity_type_id, $bundle) {
 
   if ($entity_type_id == 'node') {
     $type = \Drupal::entityTypeManager()->getStorage('node_type')->load($bundle);
-    \Drupal\tasty_backend_base\TastyBackendManager::createAdminView($type);
+
+    // Add the management view.
+    TastyBackendManager::createAdminView($type);
+
+    // Add permissions to the content admin role.
+    TastyBackendManager::addContentTypePermissions($type);
   }
 }
 
