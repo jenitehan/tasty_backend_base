@@ -82,7 +82,9 @@ function tasty_backend_base_entity_bundle_create($entity_type_id, $bundle) {
     TastyBackendManager::createAdminView($type);
 
     // Add permissions to the content admin role.
-    TastyBackendManager::addContentTypePermissions($type);
+    if (\Drupal::config('tasty_backend_base.settings')->get('apply_default_content_perms')) {
+      TastyBackendManager::addContentTypePermissions($type);
+    }
   }
 }
 

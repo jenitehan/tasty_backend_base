@@ -80,6 +80,7 @@ class TastyBackendManager extends SystemManager {
    *    The ID of a user role to alter.
    */
   public static function addContentTypePermissions($type, $rid = 'content_admin') {
+    $role = \Drupal\user\Entity\Role::load($rid);
     user_role_grant_permissions($rid, [
       'create ' . $type->id() . ' content',
       'delete any ' . $type->id() .  ' content',
@@ -87,6 +88,11 @@ class TastyBackendManager extends SystemManager {
       'override ' . $type->id() . ' published option',
       'view any unpublished ' . $type->id() . ' content',
     ]);
+    $args = [
+      '@role_name' => $role->label(),
+      '@type' => $type->label(),
+    ];
+    drupal_set_message(t('Default content type permissions have been added to the @role_name role for the @type content type.', $args));
   }
 
 }

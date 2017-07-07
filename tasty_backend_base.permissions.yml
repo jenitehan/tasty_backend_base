@@ -1,4 +1,8 @@
 access tasty backend admin pages:
   description: 'Access Tasty Backend pages to manage content, taxonomy terms, users and more.'
-  title: 'Access Tasty Backend Administration Pages'
+  title: 'Access tasty backend administration pages'
   restrict access: FALSE
+
+administer tasty backend:
+  title: 'Administer tasty backend'
+  restrict access: TRUE

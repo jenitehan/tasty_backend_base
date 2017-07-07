@@ -13,3 +13,13 @@ tasty_backend_base.system_page:
     _title: 'System'
   requirements:
     _permission: 'access tasty backend admin pages'
+
+tasty_backend_base.tasty_backend_settings_form:
+  path: '/admin/config/user-interface/tasty_backend'
+  defaults:
+    _form: '\Drupal\tasty_backend_base\Form\TastyBackendSettingsForm'
+    _title: 'Tasty Backend'
+  requirements:
+    _permission: 'administer tasty backend'
+  options:
+    _admin_route: TRUE

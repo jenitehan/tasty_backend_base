@@ -83,3 +83,10 @@ tasty_backend_base.system_page:
           - toolbar-icon
           - toolbar-icon-system-admin-config
   enabled: 0
+
+tasty_backend_base.tasty_backend_settings_form:
+  title: 'Tasty Backend'
+  route_name: tasty_backend_base.tasty_backend_settings_form
+  description: 'Configure Tasty Backend settings.'
+  parent: system.admin_config_ui
+  weight: 0
