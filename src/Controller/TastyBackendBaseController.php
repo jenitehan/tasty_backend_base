@@ -43,7 +43,7 @@ class TastyBackendBaseController extends ControllerBase {
    * @return array
    *   A render array suitable for drupal_render.
    */
-  public function manageContentPage() {
+  public function menuBlockContents() {
     return $this->tastyBackendManager->getBlockContents();
   }
 

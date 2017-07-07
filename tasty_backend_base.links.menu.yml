@@ -69,3 +69,17 @@ tasty_backend_base.user_add:
   parent: tasty_backend_base.entity_user_collection
   menu_name: tb-manage
   route_name: user.admin_create
+
+tasty_backend_base.system_page:
+  title: 'System'
+  description: 'Manage system settings.'
+  parent: tb-manage
+  menu_name: tb-manage
+  route_name: tasty_backend_base.system_page
+  weight: 5
+  options:
+    attributes:
+      class:
+          - toolbar-icon
+          - toolbar-icon-system-admin-config
+  enabled: 0

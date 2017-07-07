@@ -1,7 +1,15 @@
 tasty_backend_base.manage_content_page:
   path: '/admin/manage/content'
   defaults:
-    _controller: '\Drupal\tasty_backend_base\Controller\TastyBackendBaseController::manageContentPage'
+    _controller: '\Drupal\tasty_backend_base\Controller\TastyBackendBaseController::menuBlockContents'
     _title: 'Manage content'
+  requirements:
+    _permission: 'access tasty backend admin pages'
+
+tasty_backend_base.system_page:
+  path: '/admin/manage/system'
+  defaults:
+    _controller: '\Drupal\tasty_backend_base\Controller\TastyBackendBaseController::menuBlockContents'
+    _title: 'System'
   requirements:
     _permission: 'access tasty backend admin pages'
