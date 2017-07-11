@@ -1,0 +1,5 @@
+tasty_backend_base_user_admin_create:
+  route_name: tasty_backend_base.user_admin_create
+  title: 'Add user'
+  appears_on:
+    - tasty_backend_base.user_collection

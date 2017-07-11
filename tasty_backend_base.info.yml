@@ -11,6 +11,7 @@ dependencies:
   - node
   - override_node_options
   - path
+  - role_delegation
   - taxonomy_access_fix
   - toolbar_menu
   - view_unpublished
@@ -21,3 +22,4 @@ config_devel:
   - system.menu.tb-manage
   - toolbar_menu.toolbar_menu_element.tb_manage
   - views.view.tb_manage_content
+  - views.view.tb_manage_users

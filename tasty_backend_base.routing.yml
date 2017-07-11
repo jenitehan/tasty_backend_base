@@ -23,3 +23,19 @@ tasty_backend_base.tasty_backend_settings_form:
     _permission: 'administer tasty backend'
   options:
     _admin_route: TRUE
+
+tasty_backend_base.user_collection:
+  path: '/admin/manage/users'
+  defaults:
+    _entity_list: 'user'
+    _title: 'Users'
+  requirements:
+    _permission: 'administer users'
+
+tasty_backend_base.user_admin_create:
+  path: '/admin/manage/users/create'
+  defaults:
+    _entity_form: 'user.register'
+    _title: 'Add user'
+  requirements:
+    _permission: 'administer users'

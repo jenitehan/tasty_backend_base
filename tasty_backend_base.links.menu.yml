@@ -55,7 +55,7 @@ tasty_backend_base.entity_user_collection:
   description: 'Configure user accounts.'
   parent: tb-manage
   menu_name: tb-manage
-  route_name: entity.user.collection
+  route_name: view.tb_manage_users.page_1
   weight: 4
   options:
     attributes:
@@ -68,7 +68,7 @@ tasty_backend_base.user_add:
   description: 'Add a new user account.'
   parent: tasty_backend_base.entity_user_collection
   menu_name: tb-manage
-  route_name: user.admin_create
+  route_name: tasty_backend_base.user_admin_create
 
 tasty_backend_base.system_page:
   title: 'System'
