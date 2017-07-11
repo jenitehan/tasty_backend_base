@@ -10,5 +10,7 @@ permissions:
   - 'access toolbar'
   - 'access user profiles'
   - 'administer users'
+  - 'assign content_admin role'
+  - 'assign user_admin role'
   - 'view tb_manage in toolbar'
   - 'view the administration theme'
