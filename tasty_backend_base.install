@@ -15,4 +15,14 @@ function tasty_backend_base_install() {
   foreach (\Drupal::entityTypeManager()->getStorage('taxonomy_vocabulary')->loadMultiple() as $vocabulary) {
     \Drupal\tasty_backend_base\TastyBackendManager::addVocabularyPermissions($vocabulary);
   }
+
+  // Add default permissions for some core menus.
+  $menus = menu_ui_get_menus();
+  foreach ($menus as $menu => $name) {
+    if ($menu == 'main' || $menu == 'footer') {
+      user_role_grant_permissions('content_admin', [
+        'administer ' . $menu . ' menu items',
+      ]);
+    }
+  }
 }

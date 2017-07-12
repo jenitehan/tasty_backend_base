@@ -8,6 +8,7 @@ dependencies:
   - admin_toolbar_tools
   - contextual
   - menu_admin_per_menu
+  - menu_ui
   - node
   - override_node_options
   - path
