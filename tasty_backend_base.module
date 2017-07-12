@@ -86,6 +86,12 @@ function tasty_backend_base_entity_bundle_create($entity_type_id, $bundle) {
       TastyBackendManager::addContentTypePermissions($type);
     }
   }
+
+  // Add default vocabulary permissions to the content admin role.
+  if ($entity_type_id == 'taxonomy_term' && \Drupal::config('tasty_backend_base.settings')->get('apply_default_vocab_perms')) {
+    $vocabulary = \Drupal::entityTypeManager()->getStorage('taxonomy_vocabulary')->load($bundle);
+    TastyBackendManager::addVocabularyPermissions($vocabulary);
+  }
 }
 
 /**

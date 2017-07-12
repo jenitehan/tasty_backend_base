@@ -95,4 +95,27 @@ class TastyBackendManager extends SystemManager {
     drupal_set_message(t('Default content type permissions have been added to the @role_name role for the @type content type.', $args));
   }
 
+  /**
+   * Add default permissions for a taxonomy vocabulary.
+   *
+   * @param Drupal\taxonomy\Entity\Vocabulary $vocabulary
+   *    Drupal Vocabulary object.
+   * @param $rid
+   *    The ID of a user role to alter.
+   */
+  public static function addVocabularyPermissions($vocabulary, $rid = 'content_admin') {
+    $role = \Drupal\user\Entity\Role::load($rid);
+    user_role_grant_permissions($rid, [
+      'delete terms in ' . $vocabulary->id(),
+      'edit terms in ' . $vocabulary->id(),
+      'add terms in ' . $vocabulary->id(),
+      'reorder terms in ' . $vocabulary->id(),
+    ]);
+    $args = [
+      '@role_name' => $role->label(),
+      '@vocabulary' => $vocabulary->label(),
+    ];
+    drupal_set_message(t('Default vocabulary permissions have been added to the @role_name role for the @vocabulary vocabulary.', $args));
+  }
+
 }

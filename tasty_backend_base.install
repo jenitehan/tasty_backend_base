@@ -10,4 +10,9 @@ function tasty_backend_base_install() {
     \Drupal\tasty_backend_base\TastyBackendManager::createAdminView($type);
     \Drupal\tasty_backend_base\TastyBackendManager::addContentTypePermissions($type);
   }
+
+  // Add default permissions for any enabled taxonomy vocabularies.
+  foreach (\Drupal::entityTypeManager()->getStorage('taxonomy_vocabulary')->loadMultiple() as $vocabulary) {
+    \Drupal\tasty_backend_base\TastyBackendManager::addVocabularyPermissions($vocabulary);
+  }
 }

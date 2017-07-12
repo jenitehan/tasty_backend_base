@@ -37,6 +37,12 @@ class TastyBackendSettingsForm extends ConfigFormBase {
       '#description' => $this->t('Will add relevant permissions to the content admin role for all new content types.'),
       '#default_value' => $config->get('apply_default_content_perms'),
     ];
+    $form['apply_default_vocab_perms'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Apply default vocabulary permissions to content admin role'),
+      '#description' => $this->t('Will add relevant permissions to the content admin role for all new taxonomy vocabularies.'),
+      '#default_value' => $config->get('apply_default_vocab_perms'),
+    ];
     return parent::buildForm($form, $form_state);
   }
 
@@ -55,6 +61,7 @@ class TastyBackendSettingsForm extends ConfigFormBase {
 
     $this->config('tasty_backend_base.settings')
       ->set('apply_default_content_perms', $form_state->getValue('apply_default_content_perms'))
+      ->set('apply_default_vocab_perms', $form_state->getValue('apply_default_vocab_perms'))
       ->save();
   }
 
