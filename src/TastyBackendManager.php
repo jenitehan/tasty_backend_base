@@ -39,7 +39,7 @@ class TastyBackendManager extends SystemManager {
    * @param Drupal\node\Entity\NodeType $type
    *    Drupal NodeType object.
    */
-  public static function createAdminView($type) {
+  public static function addAdminView($type) {
 
     // Default view doesn't have any type set.
     $type_filter = [
@@ -54,21 +54,28 @@ class TastyBackendManager extends SystemManager {
       'plugin_id' => 'bundle',
       'group' => 1,
     ];
-
-    // Override config from default view to create a new view.
-    $config = \Drupal::configFactory()->getEditable('views.view.tb_manage_content');
-    $config->setName('views.view.tb_manage_content_' . $type->id());
-    $config->set('label', 'Tasty Backend Manage ' . $type->label());
-    $config->set('id', 'tb_manage_content_' . $type->id());
-    $config->set('status', TRUE);
-    $config->set('description', 'Tasty Backend administration view to manage all ' . $type->label() . ' content');
-    $config->set('display.default.display_options.access.options.perm', 'edit any ' . $type->id() . ' content');
-    $config->set('display.default.display_options.filters.type', $type_filter);
-    $config->set('display.default.display_options.title', 'Manage ' . $type->label() . ' content');
-    $config->set('display.page_1.display_options.path', 'admin/manage/content/' . $type->id());
-    $config->set('display.page_1.display_options.menu.title', $type->label());
-    $config->set('display.page_1.display_options.menu.description', 'Manage ' . $type->label() . ' content.');
-    $config->save(TRUE);
+    
+    // Duplicate the view.
+    $view = \Drupal\views\Views::getView('tb_manage_content')->storage->createDuplicate();
+    
+    // Set some basic info.
+    $view->setStatus(TRUE);
+    $view->set('id', 'tb_manage_content_' . $type->id());
+    $view->set('label', 'Tasty Backend Manage ' . $type->label());
+    $view->set('description', 'Tasty Backend administration view to manage all ' . $type->label() . ' content.');
+    
+    // Set the display options.
+    $display = $view->get('display');
+    $display['default']['display_options']['access']['options']['perm'] = 'edit any ' . $type->id() . ' content';
+    $display['default']['display_options']['filters']['type'] = $type_filter;
+    $display['default']['display_options']['title'] = 'Manage ' . $type->label() . ' content';
+    $display['page_1']['display_options']['path'] = 'admin/manage/content/' . $type->id();
+    $display['page_1']['display_options']['menu']['title'] = $type->label();
+    $display['page_1']['display_options']['menu']['description'] = 'Manage ' . $type->label() . ' content.';
+    $view->set('display', $display);
+    
+    // Save the new view.
+    $view->save();
   }
 
   /**
