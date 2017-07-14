@@ -89,4 +89,9 @@ tasty_backend_base.tasty_backend_settings_form:
   route_name: tasty_backend_base.tasty_backend_settings_form
   description: 'Configure Tasty Backend settings.'
   parent: system.admin_config_ui
-  weight: 0
+
+tasty_backend_base.tasty_backend_reload_admin_views_form:
+  title: 'Reload views'
+  route_name: tasty_backend_base.tasty_backend_reload_admin_views_form
+  description: 'Reloads all Tasty Backend content administration views.'
+  parent: tasty_backend_base.tasty_backend_settings_form

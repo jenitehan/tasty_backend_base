@@ -1,0 +1,10 @@
+tasty_backend_base.tasty_backend_settings_form:
+  route_name: tasty_backend_base.tasty_backend_settings_form
+  title: 'Settings'
+  base_route: tasty_backend_base.tasty_backend_settings_form
+
+tasty_backend_base.tasty_backend_reload_admin_views_form:
+  route_name: tasty_backend_base.tasty_backend_reload_admin_views_form
+  title: 'Reload views'
+  base_route: tasty_backend_base.tasty_backend_settings_form
+  weight: 100

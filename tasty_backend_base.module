@@ -100,8 +100,6 @@ function tasty_backend_base_entity_bundle_create($entity_type_id, $bundle) {
 function tasty_backend_base_entity_bundle_delete($entity_type_id, $bundle) {
 
   if ($entity_type_id == 'node') {
-    $storage_handler = \Drupal::entityTypeManager()->getStorage('view');
-    $entities = $storage_handler->loadMultiple(['tb_manage_content_' . $bundle]);
-    $storage_handler->delete($entities);
+    TastyBackendManager::deleteAdminView($bundle);
   }
 }

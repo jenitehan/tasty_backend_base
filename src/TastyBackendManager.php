@@ -79,6 +79,18 @@ class TastyBackendManager extends SystemManager {
   }
 
   /**
+   * Deletes an administration view for a content type.
+   *
+   * $content_type
+   *    Machine name of content type.
+   */
+  public static function deleteAdminView($content_type) {
+    $storage_handler = \Drupal::entityTypeManager()->getStorage('view');
+    $entities = $storage_handler->loadMultiple(['tb_manage_content_' . $content_type]);
+    $storage_handler->delete($entities);
+  }
+
+  /**
    * Add default permissions for a content type.
    *
    * @param Drupal\node\Entity\NodeType $type

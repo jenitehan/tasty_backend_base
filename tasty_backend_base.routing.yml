@@ -39,3 +39,11 @@ tasty_backend_base.user_admin_create:
     _title: 'Add user'
   requirements:
     _permission: 'administer users'
+
+tasty_backend_base.tasty_backend_reload_admin_views_form:
+  path: '/admin/config/user-interface/tasty_backend/reload_views'
+  defaults:
+    _form: '\Drupal\tasty_backend_base\Form\TastyBackendReloadAdminViewsForm'
+    _title: 'Reload Tasty Backend content administration views'
+  requirements:
+    _access: 'TRUE'
