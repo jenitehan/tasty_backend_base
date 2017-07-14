@@ -137,4 +137,26 @@ class TastyBackendManager extends SystemManager {
     drupal_set_message(t('Default vocabulary permissions have been added to the @role_name role for the @vocabulary vocabulary.', $args));
   }
 
+  /**
+   * Load all Tasty Backend content management views.
+   * @param $content_type
+   *    Optional. Machine name of content type.
+   * @return object or array
+   *    An individual view object if $content_type is set, otherwise an array of all tasty backend content management views.
+   */
+  public static function loadContentManageViews($content_type = NULL) {
+    $views = \Drupal::entityTypeManager()->getStorage('view')->loadMultiple();
+    $content_types = \Drupal::entityTypeManager()->getStorage('node_type')->loadMultiple();
+    $tb_views = [];
+    foreach ($content_types as $name => $type) {
+      if (array_key_exists('tb_manage_content_' . $name, $views)) {
+        $tb_views['tb_manage_content_' . $name] = $views['tb_manage_content_' . $name];
+      }
+    }
+    if ($content_type) {
+      return $tb_views['tb_manage_content_' . $content_type];
+    }
+    return $tb_views;
+  }
+
 }

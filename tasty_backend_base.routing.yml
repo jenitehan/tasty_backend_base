@@ -46,4 +46,6 @@ tasty_backend_base.tasty_backend_reload_admin_views_form:
     _form: '\Drupal\tasty_backend_base\Form\TastyBackendReloadAdminViewsForm'
     _title: 'Reload Tasty Backend content administration views'
   requirements:
-    _access: 'TRUE'
+    _permission: 'administer tasty backend'
+  options:
+    _admin_route: TRUE
